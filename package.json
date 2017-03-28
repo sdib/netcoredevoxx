@@ -1,6 +1,19 @@
 {
   "name": "netcore-devoxx-axa",
   "version": "1.0.0",
+  "scripts": {
+    "webpack:dev": "node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js",
+    "webpack.vendor:dev": "node node_modules/webpack/bin/webpack.js",
+    "build:dev": "parallelshell \"npm run webpack:dev\" \"npm run webpack.vendor:dev\"",
+    "webpack:prod": "node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod",
+    "webpack.vendor:prod": "node node_modules/webpack/bin/webpack.js --env.prod",
+    "build:prod": "parallelshell \"npm run webpack:prod\" \"npm run webpack.vendor:prod\""
+  },
+   "devDependencies": {
+    "cross-env": "^3.1.4",
+    "parallelshell": "^2.0.0",
+    "watch": "latest"
+  },
   "dependencies": {
     "@types/history": "^2.0.0",
     "@types/react": "^0.14.29",
