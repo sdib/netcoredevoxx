@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp1.1</TargetFramework>
-    <RuntimeIdentifiers>win10-x64;</RuntimeIdentifiers>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+    <RuntimeIdentifiers>debian.8-x64;win10-x64;</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,10 +13,38 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" /> 
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <!-- Files not to show in IDE -->
+    <None Remove="yarn.lock" />
+
+    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Content Remove="ClientApp\**" />
+  </ItemGroup>
+  <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec Command="npm install" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --env.prod" />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="wwwroot\dist\**; ClientApp\dist\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
 
 </Project>
