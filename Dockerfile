@@ -1,15 +1,16 @@
 FROM microsoft/aspnetcore-build:1.1.1
 
+# target app folder
 WORKDIR /app
 
-# copy project.json and restore as distinct layers
-COPY *.csproj .
-RUN dotnet restore
-
-#copy and build everything else
+# copy the project
 COPY . .
 
-RUN dotnet --version
+# restore .net core packages
+RUN dotnet restore -r debian.8-x64
+
+# publish optimized app for debian
 RUN dotnet publish -c Release -o out -r debian.8-x64
 
+# run web server
 ENTRYPOINT ["dotnet", "out/netcorelive.dll", "-r", "debian.8-x64"]
