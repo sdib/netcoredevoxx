@@ -5,6 +5,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
     <RuntimeIdentifiers>debian.8-x64;win10-x64;</RuntimeIdentifiers>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>

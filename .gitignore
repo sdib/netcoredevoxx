@@ -257,3 +257,4 @@ paket-files/
 # publish
 out/
 **/dist/
+yarn.lock
