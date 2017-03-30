@@ -4,10 +4,10 @@
   "scripts": {
     "webpack:dev": "node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js",
     "webpack.vendor:dev": "node node_modules/webpack/bin/webpack.js",
-    "build:dev": "parallelshell \"npm run webpack:dev\" \"npm run webpack.vendor:dev\"",
+    "build:dev": "npm run webpack:dev && npm run webpack.vendor:dev",
     "webpack:prod": "node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod",
     "webpack.vendor:prod": "node node_modules/webpack/bin/webpack.js --env.prod",
-    "build:prod": "parallelshell \"npm run webpack:prod\" \"npm run webpack.vendor:prod\""
+    "build:prod": "npm run webpack:prod && npm run webpack.vendor:prod"
   },
    "devDependencies": {
     "cross-env": "^3.1.4",
