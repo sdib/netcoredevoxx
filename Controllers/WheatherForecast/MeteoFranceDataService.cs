@@ -16,7 +16,7 @@ namespace netcorelive.Controllers.WheatherForecast
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
-
+ 
        public IEnumerable<WeatherForecast> GetWeatherForecasts(int startDateIndex)
        {
             var rng = new Random();
