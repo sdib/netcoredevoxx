@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -10,7 +9,6 @@ namespace netcorelive
 {
     public class Startup
     {
-
         public Startup(IHostingEnvironment env)
         {
             HostingEnvironment = env;
@@ -25,6 +23,8 @@ namespace netcorelive
         public IConfigurationRoot Configuration { get; }
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+
             if (this.HostingEnvironment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
