@@ -19,4 +19,4 @@ Vous êtes prêt à développer :)
 ## Les slides de la présentations
 
 Les slides sont présents dans le ce git.
-https://github.com/sdib/netcoredevoxx/ASPNETCORE-DevoxxFR2017.pptx
+https://github.com/sdib/netcoredevoxx/blob/master/Slides/ASPNETCORE-DevoxxFR2017.pptx?raw=true
