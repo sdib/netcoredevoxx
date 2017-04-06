@@ -2,9 +2,12 @@
 # Découverte ASP.NET CORE et son écosystème \#DEVOXX
 
 Cliquer sur le bouton pour déployer le site sur votre compte azure depuis ce git.
+
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://deploy.azure.com/?repository=https://github.com/sdib/netcorelive/tree/devoxx)
 
 ## Exécuter la démo
+
+Il vous faut au préalable node.js > 4.X.X et le SDK ASPNET CORE (https://www.microsoft.com/net/download)
 
 - git clone https://github.com/sdib/netcoredevoxx.git
 - dotnet restore
